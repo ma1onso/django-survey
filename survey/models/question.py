@@ -385,3 +385,13 @@ class Question(models.Model):
             msg += "(*) "
         msg += "{}".format(self.get_clean_choices())
         return msg
+
+
+class QuestionChoice(models.Model):
+    # TODO: maybe many to many to future
+    question = models.ForeignKey(
+        Question, on_delete=models.CASCADE, verbose_name=_("Question"), related_name="question_choices"
+    )
+    text = models.CharField(
+        max_length=500,
+    )

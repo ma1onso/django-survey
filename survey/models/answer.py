@@ -25,6 +25,10 @@ class Answer(models.Model):
     created = models.DateTimeField(_("Creation date"), auto_now_add=True)
     updated = models.DateTimeField(_("Update date"), auto_now=True)
     body = models.TextField(_("Content"), blank=True, null=True)
+    question_choice = models.ForeignKey(
+        'survey.QuestionChoice', on_delete=models.SET_NULL, verbose_name=_("Question choice"),
+        related_name="answers", null=True
+    )
 
     def __init__(self, *args, **kwargs):
         try:
